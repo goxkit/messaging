@@ -7,7 +7,7 @@ package messaging
 import "context"
 
 // Option represents a key-value pair for additional dynamic parameters in publishing messages.
-type Option struct {
+type PubOption struct {
 	Key   string
 	Value string
 }
@@ -28,7 +28,7 @@ type Publisher interface {
 	//
 	// Returns:
 	// - An error if the message could not be sent.
-	Publish(ctx context.Context, to, from, key *string, msg any, options ...*Option) error
+	Publish(ctx context.Context, to, from, key *string, msg any, options ...*PubOption) error
 
 	// PublishDeadline sends a message to the specified destination with a deadline.
 	// This method ensures that the message is sent within the context's deadline.
@@ -43,5 +43,5 @@ type Publisher interface {
 	//
 	// Returns:
 	// - An error if the message could not be sent within the deadline.
-	PublishDeadline(ctx context.Context, to, from, key *string, msg any, options ...*Option) error
+	PublishDeadline(ctx context.Context, to, from, key *string, msg any, options ...*PubOption) error
 }
